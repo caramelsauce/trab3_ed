@@ -29,3 +29,25 @@ void inserirTelefone(struct listaTelefones *lista, char *telefone)
         lista->fim = novo;
     }
 }
+
+int excluirTelefone(struct listaTelefones *lista, char *telefone)
+{
+	struct elemento *aux = lista->inicio;
+	int status = 0;
+	
+	while(aux != NULL){
+		if(strcmp(aux->telefone, telefone) == 0){
+			status = 1;
+			if(!aux->ant)
+				lista->inicio = aux->prox;
+			else
+				aux->ant->prox = aux->prox;
+			if(aux == lista->fim)
+				lista->fim = NULL;
+			free(aux);
+			aux = NULL;
+		}
+		aux = aux->prox;
+	}
+	return status;
+}
