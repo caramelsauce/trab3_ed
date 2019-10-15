@@ -1,21 +1,23 @@
 #ifndef LISTA_TELEFONE_H
 #define LISTA_TELEFONE_H
 
-struct elemento{
+struct elementoTelefone{
     char telefone[10];
-    struct elemento *prox, *ant;
+    struct elementoTelefone *prox, *ant;
 };
 
 struct listaTelefones{
-    struct elemento *inicio, *fim;
+    struct elementoTelefone *inicio, *fim;
 };
 
-void inicLista(struct listaTelefones *lista);
+void inicListaTelefone(struct listaTelefones *lista);
 
-int listaVazia(struct listaTelefones *lista);
+int listaVaziaTelefone(struct listaTelefones *lista);
 
 void inserirTelefone(struct listaTelefones *lista, char *telefone);
 
 int excluirTelefone(struct listaTelefones *lista, char *telefone);
+
+void printTelefones(struct listaTelefones *lista);
 
 #endif

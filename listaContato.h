@@ -9,14 +9,26 @@ struct contato{
 };
 
 struct elementoContato{
-	struct contato;
+	struct contato contato;
 	struct elementoContato *ant;
-	struct elementoContato *prov;
+	struct elementoContato *prox;
 };
 
 struct listaContatos{
 	struct elementoContato *inicio;
 	struct elementoContato *fim;
 };
+
+void inicListaContato(struct listaContatos *lista);
+
+int listaVaziaContato(struct listaContatos *lista);
+
+void inserirContato(struct listaContatos *lista, struct contato temp);
+
+void excluirContato(struct listaContatos *lista,char *nome);
+
+struct elementoContato * buscarContato(struct listaContatos *lista, char *nome);
+
+void printListaContatos(struct listaContatos *lista);
 
 #endif

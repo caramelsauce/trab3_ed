@@ -3,28 +3,29 @@
 #include <string.h>
 #include "listaTelefone.h"
 
-void inicLista(struct listaTelefones *lista)
+void inicListaTelefone(struct listaTelefones *lista)
 {
     lista->inicio = NULL;
     lista->fim = NULL;
 }
 
-int listaVazia(struct listaTelefones *lista)
+int listaVaziaTelefone(struct listaTelefones *lista)
 {
-    return (lista->inicio == NULL && lista->fim == NULL);
+    return (!lista->inicio && !lista->fim);
 }
 
 void inserirTelefone(struct listaTelefones *lista, char *telefone)
 {
-    struct elemento *novo;
-    novo = malloc(sizeof(struct elemento));
+    struct elementoTelefone *novo;
+    novo = malloc(sizeof(struct elementoTelefone));
     strcpy(novo->telefone, telefone);
-    if(listaVazia){
+    if(listaVaziaTelefone(lista)){
         novo->ant = novo->prox = NULL;
         lista->inicio = lista->fim = novo;
     }
     else{
         novo->ant = lista->fim;
+		lista->fim->prox = novo;
         novo->prox = NULL;
         lista->fim = novo;
     }
@@ -32,7 +33,7 @@ void inserirTelefone(struct listaTelefones *lista, char *telefone)
 
 int excluirTelefone(struct listaTelefones *lista, char *telefone)
 {
-	struct elemento *aux = lista->inicio;
+	struct elementoTelefone *aux = lista->inicio;
 	int status = 0;
 	
 	while(aux != NULL){
@@ -40,14 +41,28 @@ int excluirTelefone(struct listaTelefones *lista, char *telefone)
 			status = 1;
 			if(!aux->ant)
 				lista->inicio = aux->prox;
-			else
+			else{
 				aux->ant->prox = aux->prox;
+				aux->prox->ant = aux->ant;
+			}
 			if(aux == lista->fim)
 				lista->fim = NULL;
 			free(aux);
 			aux = NULL;
 		}
-		aux = aux->prox;
+		else
+			aux = aux->prox;
 	}
 	return status;
+}
+
+void printTelefones(struct listaTelefones *lista)
+{
+	struct elementoTelefone *aux = lista->inicio;
+	printf("\tTelefones do Contato:\n");
+	while(aux != NULL){
+		printf("\t\t%s\n", aux->telefone);
+		aux = aux->prox;
+	}
+	printf("\n\n");
 }
