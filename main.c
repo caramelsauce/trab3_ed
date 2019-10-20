@@ -12,6 +12,8 @@ void incluir_contato(struct listaContatos *lista);
 
 void buscar_contato_agenda(struct listaContatos *lista);
 
+void excluir(struct listaContatos *lista);
+
 int main()
 {
     setlocale(LC_ALL, "Portuguese");
@@ -30,6 +32,7 @@ int main()
                 buscar_contato_agenda(&lista);
                 break;
             case 3:
+                excluir(&lista);
                 break;
             case 0:
                 quit = 1;
@@ -84,6 +87,7 @@ void incluir_contato(struct listaContatos *lista)
     }
     else{
         printf("\nO contato já existe\n");
+        printf("\t%s\n", aux->contato.nome);
         printTelefones(&aux->contato.telefones);
    }
 }
@@ -105,5 +109,38 @@ void buscar_contato_agenda(struct listaContatos *lista)
         aux = aux->prox;
     }
     if(!encontrado)
-        printf("\nO contato não está na agenda\n");
+        printf("\nNenhum Contato foi encontrado com esse nome\n");
+}
+
+void excluir(struct listaContatos *lista)
+{
+    int op;
+    char nome[50];
+    struct elementoContato *aux;
+    printf("\nDigite o nome do contato a ser procurado: ");
+    gets(nome);
+    aux = lista->inicio;
+    while (aux != NULL)
+    {
+        if(strncmp(aux->contato.nome, nome, strlen(nome) ) == 0){                      
+            printf("\t%s\n", aux->contato.nome);
+            printTelefones(&aux->contato.telefones); 
+        }
+        aux = aux->prox;
+    }
+    menu_excluir();
+    scanf("%d",&op);
+    getchar();
+    switch(op){
+        case 1:
+            return;
+            break;
+        case 2:
+            printf("\nDigite o nome do contato a ser excluído: ");
+            gets(nome);
+            excluirContato(lista, nome);
+            break;
+        case 3:
+            break;
+    }
 }
