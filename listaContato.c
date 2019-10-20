@@ -66,7 +66,7 @@ void excluirContato(struct listaContatos *lista, char *nome)
     }
 }
 
-struct elementoContato *buscarContato(struct listaContatos *lista, char *nome)
+struct elementoContato *checkContato(struct listaContatos *lista, char *nome)
 {
     struct elementoContato *aux = lista->inicio;
     while(aux != NULL){

@@ -59,7 +59,7 @@ int excluirTelefone(struct listaTelefones *lista, char *telefone)
 void printTelefones(struct listaTelefones *lista)
 {
 	struct elementoTelefone *aux = lista->inicio;
-	printf("\tTelefones do Contato:\n");
+	printf("\tTelefones:\n");
 	while(aux != NULL){
 		printf("\t\t%s\n", aux->telefone);
 		aux = aux->prox;
