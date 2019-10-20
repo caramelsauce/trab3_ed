@@ -48,13 +48,13 @@ void excluirContato(struct listaContatos *lista, char *nome)
 {
     struct elementoContato *aux = lista->inicio;
 
-    while(aux){
+    while(aux != NULL){
         if(strcmp(aux->contato.nome, nome) == 0){
-			if(!aux->ant)
+			if(aux->ant == NULL)
 				lista->inicio = aux->prox;
 			else{
+                aux->prox->ant = aux->ant;
 				aux->ant->prox = aux->prox;
-				aux->prox->ant = aux->ant;
 			}
 			if(aux == lista->fim)
 				lista->fim = NULL;

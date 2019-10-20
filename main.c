@@ -141,6 +141,13 @@ void excluir(struct listaContatos *lista)
             excluirContato(lista, nome);
             break;
         case 3:
+            aux = lista->inicio;
+            while(aux != NULL)
+            {
+                if(strncmp(aux->contato.nome, nome, strlen(nome) ) == 0)
+                    excluirContato(lista, aux->contato.nome);
+                aux = aux->prox;
+            }
             break;
     }
 }
