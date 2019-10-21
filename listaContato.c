@@ -66,6 +66,7 @@ void excluirContato(struct listaContatos *lista, char *nome)
     }
 }
 
+//retorna um ponteiro para um elemento se achar o nome na lista ou NULL se nao achar
 struct elementoContato *checkContato(struct listaContatos *lista, char *nome)
 {
     struct elementoContato *aux = lista->inicio;
