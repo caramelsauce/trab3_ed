@@ -52,12 +52,14 @@ void excluirContato(struct listaContatos *lista, char *nome)
         if(strcmp(aux->contato.nome, nome) == 0){
 			if(aux->ant == NULL)
 				lista->inicio = aux->prox;
+            else if(aux == lista->fim){
+				lista->fim = lista->fim->ant;
+                lista->fim->prox = NULL;
+            }
 			else{
                 aux->prox->ant = aux->ant;
 				aux->ant->prox = aux->prox;
 			}
-			if(aux == lista->fim)
-				lista->fim = NULL;
 			free(aux);
 			aux = NULL;
 		}

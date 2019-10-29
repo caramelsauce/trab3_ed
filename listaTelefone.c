@@ -41,12 +41,14 @@ int excluirTelefone(struct listaTelefones *lista, char *telefone)
 			status = 1;
 			if(!aux->ant)
 				lista->inicio = aux->prox;
+			else if(aux == lista->fim){
+				lista->fim = lista->fim->ant;
+                lista->fim->prox = NULL;
+            }
 			else{
 				aux->ant->prox = aux->prox;
 				aux->prox->ant = aux->ant;
 			}
-			if(aux == lista->fim)
-				lista->fim = NULL;
 			free(aux);
 			aux = NULL;
 		}
