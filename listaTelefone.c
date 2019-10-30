@@ -58,6 +58,18 @@ int excluirTelefone(struct listaTelefones *lista, char *telefone)
 	return status;
 }
 
+void excluirListaTelefone(struct listaTelefones *lista)
+{
+	struct elementoTelefone *aux = lista->inicio;
+	struct elementoTelefone *prox;
+	while(aux != NULL){
+		prox = aux->prox;
+		free(aux);
+		aux = prox;
+	}
+	lista->inicio = NULL;
+}
+
 void printTelefones(struct listaTelefones *lista)
 {
 	struct elementoTelefone *aux = lista->inicio;

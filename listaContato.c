@@ -60,6 +60,7 @@ void excluirContato(struct listaContatos *lista, char *nome)
                 aux->prox->ant = aux->ant;
 				aux->ant->prox = aux->prox;
 			}
+            excluirListaTelefone(&aux->contato.telefones);
 			free(aux);
 			aux = NULL;
 		}

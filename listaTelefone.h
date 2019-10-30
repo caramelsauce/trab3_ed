@@ -18,6 +18,8 @@ void inserirTelefone(struct listaTelefones *lista, char *telefone);
 
 int excluirTelefone(struct listaTelefones *lista, char *telefone);
 
+void excluirListaTelefone(struct listaTelefones *lista);
+
 void printTelefones(struct listaTelefones *lista);
 
 #endif
