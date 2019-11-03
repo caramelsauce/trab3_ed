@@ -144,7 +144,7 @@ void excluir(struct listaContatos *lista)
 {
     int op;
     char nome[50];
-    struct elementoContato *aux;
+    struct elementoContato *aux, *prox;
     printf("\nDigite o nome do contato a ser procurado: ");
     gets(nome);
     aux = lista->inicio;
@@ -177,6 +177,15 @@ void excluir(struct listaContatos *lista)
             excluirContato(lista, nome);
             break;
         case 3:
+            aux = lista->inicio;
+            while (aux != NULL)
+            {
+                prox = aux->prox;
+                if(strncmp(aux->contato.nome, nome, strlen(nome) ) == 0){                      
+                    excluirContato(lista, aux->contato.nome);
+                }
+                aux = prox;
+            }
             break;
     }
 }
